@@ -23,4 +23,13 @@ Dominik Kempa
 5. [Sorting](notes/lecture05.md)
     - Merge Sort
     - Heap Sort
-    - Quicksort
+    - Quicksort  
+    <b>Midterm 1</b>
+    - Counting Sort
+    - Radix Sort
+6. [Fast Multiplication](notes/lecture06.md)
+    - Divide-and-conquer multiplication
+    - Karatsuba's Algorithm
+7. [Edit Distance](notes/lecture07.md)
+    - Dynamic Programming
+    - Edit Distance

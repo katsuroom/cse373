@@ -137,3 +137,109 @@ def Partition(int[] A, int low, int high):
     swap(A[left], A[high])                  # move pivot in between
     return left
 ```
+
+### Counting Sort
+- For sorting integers, useful when the range of numbers is small.
+- 5 passes across array, $\mathcal{O}(n + k)$ time
+    - $\mathcal{O}(n)$ if $k < n$
+- Counting sort is stable, two equal elements will remain in the same relative order.
+```py
+# array A of size n, with values between 0 to k-1
+def CountSort(A: list, n: int, k: int):
+
+    C = []                      # length k
+
+    for i in range(0, k):       # [0, k)
+        C[i] = 0
+
+    # count the occurrence of each number in array
+    for i in range(1, n+1):     # [1, n]
+        C[A[i]] += 1
+
+    # each value in C array is sum of C[0..i], prefix sum
+    # ex. C[2] = C[0] + C[1] + C[2]
+    for i in range(1, k):       # [1, k)
+        C[i] += C[i-1]
+
+    B = []                      # length n
+
+    for i = n -> 1:             # n down to 1, inclusive
+        # check number at A[i]
+        # check value of C at index A[i]
+        # B[value of C at index A[i]] = A[i]
+        # decrement value of C at index A[i]
+        B[C[A[i]]] = A[i]
+        C[A[i]] -= 1
+
+    # copy values of B back to A
+    for i in range(1, n):       # [1, n]
+        A[i] = B[i]
+```
+
+```
+Ex.
+A = [0, 4, 3, 2, 3, 5, 1, 2]
+n = 8
+k = 6
+
+first pass:
+
+     0  1  2  3  4  5
+C = [1, 1, 2, 2, 1, 1]
+
+second pass:
+
+     0  1  2  3  4  5
+C = [1, 2, 4, 6, 7, 8]
+
+B = [_, _, _, _, _, _, _, _, _]
+
+first iteration:
+
+    A[i] = 2
+    C[2] = 4
+    B = [_, _, _, 2, _, _, _, _, _]
+    C = [1, 2, *3*, 6, 7, 8]
+
+second iteration:
+
+    A[i] = 1
+    C[1] = 2
+    B = [_, 1, _, 2, _, _, _, _, _]
+    C = [1, *1*, 3, 6, 7, 8]
+```
+
+### Radix sort
+- Generalization of counting sort when the range of values is larger.
+    - Ex. $A[i] \in [0...n^2)$
+- Input array A contains objects with a property `key`.
+- Treats values as base-n numbers, first sorting by A[i] % n (least significant digit) and then sorting by A[i] / n (most significant digit).
+- $\mathcal{O}(cn)$ runtime for $A[i] \in [0...n^c]$
+
+```py
+def CountSort(A, n, k):
+    for i = 0 -> k - 1:         C[i] = 0
+    for i = 1 -> n:             C[A[i].key] += 1
+    for i = 1 -> k - 1:         C[i] += C[i-1]
+    for i = n -> 1:
+        B[C[A[i].key]] = A[i]
+        C[A[i].key] -= 1
+
+    for i = 1 -> n:             A[i] = B[i]
+
+# A is an array of n elements, with values [0, n^2)
+def RadixSort(A, n):
+    X = []                      # length n
+
+    for i = 1 -> n:
+        X[i].key = A[i] % n
+        X[i].data = A[i]        # stores original value
+    CountSort(X, n, n)
+
+    for i = 1 -> n:
+        X[i].key = X[i].data / n
+    CountSort(X, n, n)
+
+    for i = 1 -> n:
+        A[i] = X[i].data
+```
