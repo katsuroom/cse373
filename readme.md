@@ -32,4 +32,11 @@ Dominik Kempa
     - Karatsuba's Algorithm
 7. [Edit Distance](notes/lecture07.md)
     - Dynamic Programming
-    - Edit Distance
+    - Global comparison
+        - Edit Distance
+        - Longest Common Subsequence
+    - Local comparison
+        - Approximate Pattern Matching
+8. [Knapsack](notes/lecture08.md)
+    - Subset Sum
+    - Knapsack problem

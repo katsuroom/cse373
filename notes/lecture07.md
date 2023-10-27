@@ -277,3 +277,121 @@ def EditDistance(X, m, Y, n):
 
     return A[b,n]
 ```
+
+### Longest Common Subsequence
+- Longest sequence of non-consecutive letters in two strings.
+- Similar to Edit Distance algorithm.
+```py
+def LCS(X, Y):
+    
+    m = len(X)
+    n = len(Y)
+
+    # create matrix with n+1 rows, m+1 columns
+    A = [n+1][m+1]
+
+    # fill first row with 0
+    for i in range(0, n+1):
+        A[0][i] = 0
+
+    # fill first column with 0
+    for i in range(0, m+1):
+        A[i][0] = 0
+
+    # fill second row with 1, skip index 0
+    for i in range(1, n+1):
+        A[1][i] = 1
+
+    # iterate remaining cells
+    for i in range(2, n+1):
+        for j in range(1, m+1):
+
+            if X[j] == Y[i]:
+                # if characters are equal, get diagonal + 1
+                A[i][j] = A[i-1][j-1] + 1
+            else:
+                # get max of above and left values
+                A[i][j] = max(A[i-1][j], A[i][j-1])
+
+    # return bottom-right most element
+    return A[n][m]
+```
+
+```
+ex.
+X = ABCDAF      m = 6
+Y = ACBCF       n = 5
+
+expected LCS: 4
+A*  B*  C*  D   A   F*
+A*  C   B*  C*  F*
+
+A = [][]
+
+initial A setup:
+
+        A   B   C   D   A   F
+    0   0   0   0   0   0   0
+A   0   1   1   1   1   1   1
+C   0   -   -   -   -   -   -
+B   0   -   -   -   -   -   -
+C   0   -   -   -   -   -   -
+F   0   -   -   -   -   -   -
+
+for each A[i][j]:
+    - if X[i] == Y[j], get upper-left diagonal value, add 1
+    - else, get max of up and left values
+
+complete A:
+
+        A   B   C   D   A   F
+    0   0   0   0   0   0   0
+A   0   1   1   1   1   1   1
+C   0   1   1   2   2   2   2
+B   0   1   2   2   2   2   2
+C   0   1   2   3   3   3   3
+F   0   1   2   3   3   3   4
+
+LCS = 4
+
+To get the exact sequence, start at A[n][m] and traverse towards A[0][0].
+    - if value is greater than above and left, move diagonal and add letter to string.
+    - else, move up or left to the cell with equal value.
+
+        A   B   C   D   A   F
+    0*  0   0   0   0   0   0
+A   0   1*  1   1   1   1   1
+C   0   1*  1   2   2   2   2
+B   0   1   2*  2   2   2   2
+C   0   1   2   3*  3*  3*  3
+F   0   1   2   3   3   3   4*
+
+Sequence: ABCF
+```
+
+### Approximate Pattern Matching
+- Input: Pattern $P$ of length $m$, String $T$ of length $n$, value $t \geq 0$
+- Output: All substrings of $T$ where the edit distance to $P$ is less than $t$.
+- $\mathcal{O}(mn)$ time
+- $\mathcal{O}(mn)$ space
+```py
+def ApproxPatternMatching(P, m, T, n, t):
+
+    A = [m+1][n+1]
+
+    for i in range(0, m+1):
+        A[i, 0] = i
+
+    for j in range(0, n+1):
+        A[0, j] = 0
+
+    for i in range(1, m+1):
+        for j in range(1, n+1):
+            A[i, j] = A[i-1, j-1] + (X[i] == Y[j] ? 1 : 0)
+            A[i, j] = min(A[i,j], A[i-1, j] + 1)
+            A[i, j] = min(A[i,j], A[i, j-1] + 1)
+
+    for j in range(1, n+1):
+        if A[m, j] <= t:
+            print(j)
+```
