@@ -40,3 +40,5 @@ Dominik Kempa
 8. [Knapsack](notes/lecture08.md)
     - Subset Sum
     - Knapsack problem
+9. [Optimal BST](notes/lecture09.md)
+    - Optimal BST
