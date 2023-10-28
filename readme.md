@@ -42,3 +42,7 @@ Dominik Kempa
     - Knapsack problem
 9. [Optimal BST](notes/lecture09.md)
     - Optimal BST
+10. [Chain Matrix Multiplication](notes/lecture10.md)
+    - Chain Matrix Multiplication
+11. [Scheduling](notes/lecture11.md)
+    - Scheduling
