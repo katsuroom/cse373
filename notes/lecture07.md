@@ -76,7 +76,7 @@ ED(X, Y) = 4
         - $\forall x.\quad ED(X, \epsilon) = ED(\epsilon, X) = |X|$
     - For all nonempty $X \in \Sigma^m$ and $Y \in \Sigma^n$:
         - `ED(X, Y) = min(a, b, c)`
-        - `a = ED(X[1...m-1], Y[1...n-1]) + (X[m] == Y[n] ? 1 : 0)`
+        - `a = ED(X[1...m-1], Y[1...n-1]) + (X[m] == Y[n] ? 0 : 1)`
         - `b = ED(X[1...m-1], Y[1...n]) + 1`
         - `c = ED(X[1...m], Y[1...n-1]) + 1`
 ```py
@@ -94,7 +94,7 @@ def EditDistance(X, m, Y, n):
 
     for i in range(1, m+1):             # [1, m]
         for j in range(1, n+1):         # [1, n]
-            A[i, j] = A[i-1, j-1] + (X[i] == Y[i] ? 1 : 0)
+            A[i, j] = A[i-1, j-1] + (X[i] == Y[i] ? 0 : 1)
             A[i, j] = min(A[i, j], A[i-1, j] + 1)
             A[i, j] = min(A[i, j], A[i, j-1] + 1)
 
@@ -271,7 +271,7 @@ def EditDistance(X, m, Y, n):
         b = 1 - b                       # switches between 1 and 0
         A[b, 0] = i
         for j in range(1, n):           # [1, n]
-            A[b, j] = A[1-b, j-1] + (X[i] == Y[j] ? 1 : 0)
+            A[b, j] = A[1-b, j-1] + (X[i] == Y[j] ? 0 : 1)
             A[b, j] = min(A[b, j], A[1-b, j] + 1)
             A[b, j] = min(A[b, j], A[b, j-1] + 1)
 
@@ -387,7 +387,7 @@ def ApproxPatternMatching(P, m, T, n, t):
 
     for i in range(1, m+1):
         for j in range(1, n+1):
-            A[i, j] = A[i-1, j-1] + (X[i] == Y[j] ? 1 : 0)
+            A[i, j] = A[i-1, j-1] + (X[i] == Y[j] ? 0 : 1)
             A[i, j] = min(A[i,j], A[i-1, j] + 1)
             A[i, j] = min(A[i,j], A[i, j-1] + 1)
 
