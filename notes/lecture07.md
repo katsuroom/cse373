@@ -298,15 +298,11 @@ def LCS(X, Y):
     for i in range(0, m+1):
         A[i][0] = 0
 
-    # fill second row with 1, skip index 0
+    # iterate cells
     for i in range(1, n+1):
-        A[1][i] = 1
-
-    # iterate remaining cells
-    for i in range(2, n+1):
         for j in range(1, m+1):
 
-            if X[j] == Y[i]:
+            if X[j-1] == Y[i-1]:
                 # if characters are equal, get diagonal + 1
                 A[i][j] = A[i-1][j-1] + 1
             else:
@@ -332,7 +328,7 @@ initial A setup:
 
         A   B   C   D   A   F
     0   0   0   0   0   0   0
-A   0   1   1   1   1   1   1
+A   0   -   -   -   -   -   -
 C   0   -   -   -   -   -   -
 B   0   -   -   -   -   -   -
 C   0   -   -   -   -   -   -
