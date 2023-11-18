@@ -47,7 +47,7 @@ function DFSVisit(G, u):
 ### Topological Sort
 - **Input**: A directed acyclic graph $G = (V, E)$
 - **Output**: A node sequence such that if $(u, v) \in E$, then $u$ occurs before $v$ in the sequence
-![](../img/topological_sort.png)
+!["topological_sort"](../img/topological_sort.png)
 - Lemma
     - For every edge $(u, v) \in E$ in a DAG, it holds that $f[u] > f[v]$
 - Solution
