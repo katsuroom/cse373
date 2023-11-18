@@ -45,4 +45,12 @@ Dominik Kempa
 10. [Chain Matrix Multiplication](notes/lecture10.md)
     - Chain Matrix Multiplication
 11. [Scheduling](notes/lecture11.md)
-    - Scheduling
+    - Scheduling  
+    <b>Midterm 2</b>
+12. [Huffman Coding](notes/lecture12.md)
+    - Huffman Coding
+13. [BFS](notes/lecture13.md)
+    - Directed Graphs
+    - Breadth First Search
+    - Two Coloring
+14. [DFS](notes/lecture14.md)
