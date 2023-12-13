@@ -54,3 +54,9 @@ Dominik Kempa
     - Breadth First Search
     - Two Coloring
 14. [DFS](notes/lecture14.md)
+    - Depth First Search
+    - Topological Sort
+    - Strongly Connected Components
+15. [Shortest Paths](notes/lecture15.md)
+    - Dijkstra's Algorithm
+    - Bellman-Ford Algorithm
