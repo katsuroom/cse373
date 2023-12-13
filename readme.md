@@ -60,3 +60,8 @@ Dominik Kempa
 15. [Shortest Paths](notes/lecture15.md)
     - Dijkstra's Algorithm
     - Bellman-Ford Algorithm
+16. [All Pairs Shortest Paths](notes/lecture16.md)
+    - Floyd-Warshall Algorithm
+17. [NP-Hardness](notes/lecture17.md)
+    - NP-Hardness
+    - NP-Completeness
