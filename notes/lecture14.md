@@ -79,6 +79,6 @@ Solution
 - $G^T$ = transpose of $G$, every edge $E$ is reversed ($E^T$)
 1. Call $DFS(G)$ to compute $f[u]$ for all vertices.
 2. Compute $G^T$.
-3. Call $DFS(G)$ but visit vertices in decreasing order of $f[u]$.
+3. Call $DFS(G^T)$ but visit vertices in decreasing order of $f[u]$.
 3. Output vertices of each $DFS(G)$ call as a separate strongly connected component
 - $\mathcal{O}(|V|+|E|)$ time
